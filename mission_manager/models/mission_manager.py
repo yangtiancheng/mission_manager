@@ -21,7 +21,7 @@ class MissionManagerHead(models.Model):
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     current_point_id = fields.Many2one('res.users', string='Current Person', help='Current Person')
     state = fields.Selection(selection=[('draft', 'Draft'), ('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
-        , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel')],default='draft')
+        , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting')],default='draft')
     line_ids = fields.One2many('mission.progress', 'head_id', string='Processes', help='Processes')
 
     @api.depends('deadline_date')
@@ -74,7 +74,7 @@ class MissionProgress(models.Model):
     description = fields.Text(string='Description', help='Description')
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     state = fields.Selection(selection=[('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
-        , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel')])
+        , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting')])
 
     @api.model
     def create(self, vals):

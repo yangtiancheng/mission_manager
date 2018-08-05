@@ -215,6 +215,24 @@ msgid "Stop"
 msgstr "暂停"
 
 #. module: mission_manager
+#: selection:mission.manager.head,state:0
+#: selection:mission.progress,state:0
+msgid "Testing"
+msgstr "测试中"
+
+#. module: mission_manager
+#: selection:mission.manager.head,state:0
+#: selection:mission.progress,state:0
+msgid "Tested"
+msgstr "测试完成"
+
+#. module: mission_manager
+#: selection:mission.manager.head,state:0
+#: selection:mission.progress,state:0
+msgid "Waiting"
+msgstr "等待文档"
+
+#. module: mission_manager
 #: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__type
 #: model:ir.model.fields,help:mission_manager.field_mission_manager_head__type
 msgid "Type"
