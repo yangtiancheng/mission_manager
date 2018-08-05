@@ -21,7 +21,7 @@ class MissionManagerHead(models.Model):
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     current_point_id = fields.Many2one('res.users', string='Current Person', help='Current Person')
     # 优先级
-    priority = fields.Selection(selection=[('low','Low'),('medium','Medium'),('high','High'),('max','Max')],string='Priority',help='Priority',default='low')
+    priority = fields.Selection(selection=[('low','Low'),('medium','Medium'),('high','High'),('max','Max')],string='Priority',help='Priority',default='Max')
     # 开始时间
     # 最初预计
     need_time = fields.Float(string='Need Time',help='Need Time',digits=(3,1),default=0.0)
@@ -87,7 +87,10 @@ class MissionProgress(models.Model):
     used_time = fields.Float(string='Used Time', help='Used Time', digits=(3, 1), default=0.0)
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     state = fields.Selection(selection=[('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
-        , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting')])
+        , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting'),('fixing', 'Fixing')])
+    # 上线批次
+    batch_number = fields.Char(string='Batch Number', help='Batch Number')
+
 
     @api.model
     def create(self, vals):

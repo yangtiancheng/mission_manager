@@ -22,6 +22,7 @@
                             <field name="create_uid" attrs="{'readonly':True}"/>
                             <field name="create_date" attrs="{'readonly':True}"/>
                             <field name="type" attrs="{'required':True}"/>
+                            <field name="batch_number"/>
                             <field name="priority"  attrs="{'required':True}"/>
                             <field name="state" attrs="{'readonly':True}"/>
                         </group>
@@ -30,6 +31,7 @@
                             <field name="current_point_id" attrs="{'required':True}"/>
                             <field name="write_date" attrs="{'readonly':True}"/>
                             <field name="deadline_date"/>
+                            <field name="need_time"/>
                             <field name="days"/>
                             <field name="attachments_ids" widget="many2many_binary"/>
                         </group>
@@ -42,7 +44,7 @@
                                     <field name="line_number" attrs="{'required':True}"/>
                                     <field name="point_from_id" attrs="{'readonly':True}"/>
                                     <field name="point_to_id" attrs="{'required':True}"/>
-                                    <field name="create_date" attrs="{'required':True}"/>
+                                    <field name="create_date" attrs="{'readonly':True}"/>
                                     <field name="used_time"/>
                                     <field name="description"/>
                                     <field name="state" attrs="{'required':True}"/>
@@ -66,9 +68,10 @@
                     decoration-success="days &lt; 15"
                     decoration-danger="days &lt; 7"
                     decoration-primary="days &lt; 0">
-                <field name="number"/>
+                <field name="number" invisible="1"/>
+                <field name="rdc_number"/>
                 <field name="name"/>
-                <field name="create_uid"/>
+                <field name="create_uid" invisible="1"/>
                 <field name="current_point_id"/>
                 <field name="create_date"/>
                 <field name="deadline_date"/>
@@ -85,6 +88,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="number"/>
+                <field name="rdc_number"/>
                 <field name="name"/>
                 <field name="current_point_id"/>
                 <field name="create_date"/>

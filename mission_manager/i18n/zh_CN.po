@@ -215,10 +215,22 @@ msgid "Re-active"
 msgstr "激活"
 
 #. module: mission_manager
+#: selection:mission.manager.head,state:0
+#: selection:mission.progress,state:0
+msgid "Fixing"
+msgstr "返修中"
+
+#. module: mission_manager
 #: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__state
 #: model:ir.model.fields,field_description:mission_manager.field_mission_progress__state
 msgid "State"
 msgstr "状态"
+
+#. module: mission_manager
+#: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__priority
+#: model:ir.model.fields,field_description:mission_manager.field_mission_progress__priority
+msgid "Priority"
+msgstr "优先级"
 
 #. module: mission_manager
 #: selection:mission.manager.head,state:0
@@ -275,6 +287,12 @@ msgstr "类型"
 #: model:ir.model.fields,help:mission_manager.field_mission_manager_head__deadline_date
 msgid "Deadline Date"
 msgstr "截止日期"
+
+#. module: mission_manager
+#: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__batch_number
+#: model:ir.model.fields,help:mission_manager.field_mission_manager_head__batch_number
+msgid "Batch Number"
+msgstr "上线批次"
 
 #. module: mission_manager
 #: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__days
