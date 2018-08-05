@@ -15,13 +15,15 @@ class MissionManagerHead(models.Model):
     active = fields.Boolean(string='Active', help='Active', default=True)
     number = fields.Char(string='Number', help='Number')
     deadline_date = fields.Date(string='Deadline Date', help='Deadline Date')
-    days = fields.Integer(compute="_get_last_days", string='Last Days', help='Last Days',store=True)
+    days = fields.Integer(compute="_get_last_days", string='Last Days', help='Last Days',store=False)
+    days2 = fields.Integer(related="days", string='Last Days', help='Last Days',store=False)
+
     rdc_number = fields.Char(string='RDC Number', help='RDC Number')
     note = fields.Text(string='Note', help='Note')
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     current_point_id = fields.Many2one('res.users', string='Current Person', help='Current Person')
     # 优先级
-    priority = fields.Selection(selection=[('low','Low'),('medium','Medium'),('high','High'),('max','Max')],string='Priority',help='Priority',default='Max')
+    priority = fields.Selection(selection=[('low','Low'),('medium','Medium'),('high','High'),('max','Max')],string='Priority',help='Priority',default='max')
     # 开始时间
     # 最初预计
     need_time = fields.Float(string='Need Time',help='Need Time',digits=(3,1),default=0.0)

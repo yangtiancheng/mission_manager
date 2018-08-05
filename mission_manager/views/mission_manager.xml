@@ -62,12 +62,12 @@
         <field name="name">mission_manager_tree</field>
         <field name="model">mission.manager.head</field>
         <field name="arch" type="xml">
-            <tree default_order="days asc"
+            <tree default_order="days2 asc"
                     decoration-muted ="state == 'done'"
-                    decoration-info="days &lt; 30"
-                    decoration-success="days &lt; 15"
-                    decoration-danger="days &lt; 7"
-                    decoration-primary="days &lt; 0">
+                    decoration-info="days2 &lt; 30"
+                    decoration-success="days2 &lt; 15"
+                    decoration-danger="days2 &lt; 7"
+                    decoration-primary="days2 &lt; 0">
                 <field name="number" invisible="1"/>
                 <field name="rdc_number"/>
                 <field name="name"/>
@@ -75,7 +75,8 @@
                 <field name="current_point_id"/>
                 <field name="create_date"/>
                 <field name="deadline_date"/>
-                <field name="days"/>
+                <field name="days" invisible="1"/>
+                <field name="days2"/>
                 <field name="active"/>
                 <field name="state"/>
             </tree>
@@ -88,6 +89,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="number"/>
+                <field name="days2"/>
                 <field name="rdc_number"/>
                 <field name="name"/>
                 <field name="current_point_id"/>

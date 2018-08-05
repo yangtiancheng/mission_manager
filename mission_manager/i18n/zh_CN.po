@@ -297,6 +297,8 @@ msgstr "上线批次"
 #. module: mission_manager
 #: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__days
 #: model:ir.model.fields,help:mission_manager.field_mission_manager_head__days
+#: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__days2
+#: model:ir.model.fields,help:mission_manager.field_mission_manager_head__days2
 msgid "Days"
 msgstr "剩余天数"
 
