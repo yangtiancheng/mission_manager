@@ -27,6 +27,8 @@ class MissionManagerHead(models.Model):
     need_time = fields.Float(string='Need Time',help='Need Time',digits=(3,1),default=0.0)
     # 总消耗
     # 预计剩余
+    # 上线批次
+    batch_number = fields.Char(string='Batch Number', help='Batch Number')
 
 
     state = fields.Selection(selection=[('draft', 'Draft'), ('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
@@ -88,8 +90,6 @@ class MissionProgress(models.Model):
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     state = fields.Selection(selection=[('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
         , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting'),('fixing', 'Fixing')])
-    # 上线批次
-    batch_number = fields.Char(string='Batch Number', help='Batch Number')
 
 
     @api.model
