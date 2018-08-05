@@ -9,33 +9,41 @@
                     <label for="number"/>
                     <div>
                         <h1>
-                            <field name="number"/>
+                            <field name="number" attrs="{'readonly':True}"/>
                         </h1>
+                        <label for="rdc_number"/>
+                        <h2>
+                            <field name="rdc_number"/>
+                        </h2>
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="b_person"/>
-                            <field name="create_date"/>
-                            <field name="state"/>
+                            <field name="name" attrs="{'required':True}"/>
+                            <field name="create_uid" attrs="{'readonly':True}"/>
+                            <field name="create_date" attrs="{'readonly':True}"/>
+                            <field name="type" attrs="{'required':True}"/>
+                            <field name="state" attrs="{'readonly':True}"/>
                         </group>
                         <group>
                             <field name="active"/>
-                            <field name="t_person"/>
-                            <field name="create_uid"/>
-                            <field name="attachments" widget="many2many_tags"/>
+                            <field name="current_point_id" attrs="{'required':True}"/>
+                            <field name="write_date" attrs="{'readonly':True}"/>
+                            <field name="deadline_date"/>
+                            <field name="days"/>
+                            <field name="attachments_ids" widget="many2many_binary"/>
                         </group>
                     </group>
                     <field name="note"/>
                     <notebook>
                         <page string="Processes">
                             <field name="line_ids">
-                                <tree>
-                                    <field name="line_number"/>
-                                    <field name="point_from_id"/>
-                                    <field name="point_to_id"/>
+                                <tree editable="bottom"  options='{"no_open": True}'>
+                                    <field name="line_number" attrs="{'required':True}"/>
+                                    <field name="point_from_id" attrs="{'readonly':True}"/>
+                                    <field name="point_to_id" attrs="{'required':True}"/>
                                     <field name="description"/>
-                                    <field name="attachments" widget="many2many_tags"/>
+                                    <field name="state" attrs="{'required':True}"/>
+                                    <field name="attachments_ids" widget="many2many_binary"/>
                                 </tree>
                             </field>
                         </page>
@@ -49,16 +57,37 @@
         <field name="name">mission_manager_tree</field>
         <field name="model">mission.manager.head</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree default_order="days asc"
+                    decoration-info="days &lt; 30"
+                    decoration-success="days &lt; 15"
+                    decoration-danger="days &lt; 7"
+                    decoration-primary="days &lt; 0">
                 <field name="number"/>
                 <field name="name"/>
-                <field name="b_person"/>
-                <field name="t_person"/>
+                <field name="create_uid"/>
+                <field name="current_point_id"/>
+                <field name="create_date"/>
+                <field name="deadline_date"/>
+                <field name="days"/>
+                <field name="active"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mission_manager_search" model="ir.ui.view">
+        <field name="name">mission_manager_search</field>
+        <field name="model">mission.manager.head</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="number"/>
+                <field name="name"/>
+                <field name="current_point_id"/>
                 <field name="create_date"/>
                 <field name="create_uid"/>
                 <field name="active"/>
                 <field name="state"/>
-            </tree>
+            </search>
         </field>
     </record>
 
@@ -80,9 +109,14 @@
               id="mission_manager_menu"
               sequence="10"/>
 
+    <menuitem name="Mission Manager Dou"
+          id="mission_manager_dou_menu"
+          parent="mission_manager.mission_manager_menu"
+          sequence="10"/>
+
     <menuitem name="Mission"
               id="mission_manager_menu_sub01"
-              parent="mission_manager.mission_manager_menu"
+              parent="mission_manager.mission_manager_dou_menu"
               action="mission_manager_act"
               sequence="10"/>
 </odoo>

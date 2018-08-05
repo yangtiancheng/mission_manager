@@ -11,13 +11,14 @@ Core mechanisms for the accounting modules. To display the menuitems, install th
     'category': 'Mission',
     'depends' : ['base'],
     'data': [
-        'views/mission_manager.xml'
+        'views/mission_manager.xml',
+        'datas/mission_datas.xml'
     ],
     'demo': [
     ],
     'qweb': [
     ],
     'installable': True,
-    'application': False,
+    'application': True,
     'auto_install': False
 }
