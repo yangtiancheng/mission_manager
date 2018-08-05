@@ -20,16 +20,28 @@ class MissionManagerHead(models.Model):
     note = fields.Text(string='Note', help='Note')
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     current_point_id = fields.Many2one('res.users', string='Current Person', help='Current Person')
+    # 优先级
+    priority = fields.Selection(selection=[('low','Low'),('medium','Medium'),('high','High'),('max','Max')],string='Priority',help='Priority',default='low')
+    # 开始时间
+    # 最初预计
+    need_time = fields.Float(string='Need Time',help='Need Time',digits=(3,1),default=0.0)
+    # 总消耗
+    # 预计剩余
+
+
     state = fields.Selection(selection=[('draft', 'Draft'), ('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
         , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting')],default='draft')
     line_ids = fields.One2many('mission.progress', 'head_id', string='Processes', help='Processes')
 
-    @api.depends('deadline_date')
+
+    @api.depends('deadline_date','state')
     @api.multi
     def _get_last_days(self):
         for rec in self:
             if rec.deadline_date:
                 rec.days =  (datetime.datetime.strptime(rec.deadline_date, '%Y-%m-%d') - datetime.datetime.now()).days
+            if rec.state == 'done':
+                rec.days = 99999
 
 
     @api.model
@@ -72,6 +84,7 @@ class MissionProgress(models.Model):
     point_from_id = fields.Many2one(comodel_name='res.users', string='Point From', help='Point From',default=lambda self: self.env.uid)
     point_to_id = fields.Many2one(comodel_name='res.users', string='Point To', help='Point To')
     description = fields.Text(string='Description', help='Description')
+    used_time = fields.Float(string='Used Time', help='Used Time', digits=(3, 1), default=0.0)
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     state = fields.Selection(selection=[('open', 'Open'), ('doing', 'Doing'), ('done', 'Done')
         , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting')])

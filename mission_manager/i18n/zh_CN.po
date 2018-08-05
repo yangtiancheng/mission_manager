@@ -178,6 +178,12 @@ msgid "Point From"
 msgstr "操作人"
 
 #. module: mission_manager
+#: model:ir.model.fields,field_description:mission_manager.field_mission_progress__used_time
+#: model:ir.model.fields,help:mission_manager.field_mission_progress__used_time
+msgid "Used Time"
+msgstr "使用时间"
+
+#. module: mission_manager
 #: model:ir.model.fields,field_description:mission_manager.field_mission_progress__point_to_id
 #: model:ir.model.fields,help:mission_manager.field_mission_progress__point_to_id
 msgid "Point To"
@@ -195,6 +201,12 @@ msgstr "流程"
 #: model:ir.model.fields,help:mission_manager.field_mission_manager_head__rdc_number
 msgid "RDC Number"
 msgstr "RDC任务号"
+
+#. module: mission_manager
+#: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__need_time
+#: model:ir.model.fields,help:mission_manager.field_mission_manager_head__need_time
+msgid "Need Time"
+msgstr "最初预计"
 
 #. module: mission_manager
 #: selection:mission.manager.head,state:0
@@ -231,6 +243,26 @@ msgstr "测试完成"
 #: selection:mission.progress,state:0
 msgid "Waiting"
 msgstr "等待文档"
+
+#. module: mission_manager
+#: selection:mission.manager.head,priority:0
+msgid "Low"
+msgstr "低"
+
+#. module: mission_manager
+#: selection:mission.manager.head,priority:0
+msgid "Medium"
+msgstr "中"
+
+#. module: mission_manager
+#: selection:mission.manager.head,priority:0
+msgid "High"
+msgstr "高"
+
+#. module: mission_manager
+#: selection:mission.manager.head,priority:0
+msgid "Max"
+msgstr "急"
 
 #. module: mission_manager
 #: model:ir.model.fields,field_description:mission_manager.field_mission_manager_head__type
