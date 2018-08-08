@@ -15,6 +15,7 @@
                         <h2>
                             <field name="rdc_number"/>
                         </h2>
+                        <field name="rdc_url" widget="url"/>
                     </div>
                     <group>
                         <group>
