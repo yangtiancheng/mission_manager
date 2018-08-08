@@ -19,6 +19,7 @@ class MissionManagerHead(models.Model):
     days2 = fields.Integer(related="days", string='Last Days', help='Last Days',store=False)
 
     rdc_number = fields.Char(string='RDC Number', help='RDC Number')
+    rdc_url = fields.Char(compute="_get_rdc_url",string='RDC URL', help='RDC RUL')
     note = fields.Text(string='Note', help='Note')
     attachments_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments', help='Attachments')
     current_point_id = fields.Many2one('res.users', string='Current Person', help='Current Person')
@@ -37,6 +38,11 @@ class MissionManagerHead(models.Model):
         , ('reactive', 'Re-active'), ('stop', 'Stop'), ('cancel', 'Cancel'),('testing', 'Testing'),('tested', 'Tested'),('waiting', 'Waiting')],default='draft')
     line_ids = fields.One2many('mission.progress', 'head_id', string='Processes', help='Processes')
 
+    @api.one
+    @api.depends("rdc_number")
+    def _get_rdc_url(self):
+        if self.rdc_number:
+            self.rdc_url = "https://rdc.hand-china.com/index.php?m=task&f=view&taskID="+str(self.rdc_number)
 
     @api.depends('deadline_date','state')
     @api.multi
